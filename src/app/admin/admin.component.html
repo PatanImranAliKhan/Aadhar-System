@@ -1,0 +1,42 @@
+<div class="container">
+    <form #userForm="ngForm">
+
+        <div class="form-group">
+            <label>Name </label><br>
+            <input type="text" class="form-control" #name name="name" [class.is-invalid]="name.invalid && name.touched" [(ngModel)]="a" required>
+        </div>
+        <div class="form-group">
+            <label>Aadhar Id </label><br>
+            <input type="tel" (blur)="validateid(id.value)" (change)="validateid(id.value)" class="form-control" #id pattern="^\d{12}$" [class.is-invalid]="id.invalid && id.untouched && id.pattern && con" [(ngModel)]="b" name="user.id" required>
+            <div class="text-danger" style="color:red" *ngIf="con" ><small>This Aadhar is already exist </small> </div>
+        </div>
+        <div class="form-group">
+            <label>Date Of Birth </label><br>
+            <input type="date" class="form-control" #date name="dob" [class.is-invalid]="date.invalid && date.untouched" [(ngModel)]="c" required>
+        </div>
+        <div class="form-group">
+            <label>age </label><br>
+            <input type="number" class="form-control" #age name="age" [class.is-invalid]="age.invalid && age.untouched" [(ngModel)]="d" required>
+        </div>
+        <div>
+            <label>Gender </label><br>
+            <div class="form-check" required>
+                <input type="radio" class="form-check-input" #gender name="gender" [class.is-invalid]="gender.invalid && gender.untouched" [(ngModel)]="e" value="male" required>
+                <label class="form-check-label">male</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" #gender name="gender" [(ngModel)]="e" [class.is-invalid]="gender.invalid && gender.untouched" value="female" required >
+                <label class="form-check-label">female</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>state</label><br>
+            <select (blur)="validateTopic(state.value)" (change)="validateTopic(state.value)" #state="ngModel" name="state" [class.is-invalid]="sub && state.invalid && state.touched" class="custom-select" [(ngModel)]="f" required>
+                <option value="state">state</option>
+                <option *ngFor="let st of states" value={{st}}>{{ st }}</option>
+            </select>
+            <div class="text-danger" [class.d-none]="!sub" style="color:red" *ngIf="sub" ><small>Please select the state </small> </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!userForm.valid && !sub && !con" (click)="submit()">Add</button>
+    </form>
+</div>

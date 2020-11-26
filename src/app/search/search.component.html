@@ -1,0 +1,97 @@
+<div class="container">
+    <form #selectForm="ngForm"  >
+        <div class="form-group">
+            <label>Select the type of search</label><br>
+            <select (blur)="validateTopic(view.value)" (change)="validateTopic(view.value)" #view="ngModel" name="select" [class.is-invalid]="sub && view.touched" class="custom-select" [(ngModel)]="abc" required>
+                <option value="--select--">--select--</option>
+                <option  *ngFor="let d of def" value={{d}}>{{ d }}</option>
+            </select>
+            <div class="text-danger" style="color:red" *ngIf="sub" ><small>Please select the state </small> </div>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!selectForm.valid" (click)="submit()">Add</button>
+    </form>
+    <form #select1Form="ngForm">
+        <div>
+        </div>
+        <div *ngIf="con1">
+            <div>
+                <label>Enter the name</label>
+                <input type="text" class="form-control" #name name="name" [class.is-invalid]="name.invalid" [(ngModel)]="a" value='' required>
+                <button class="btn btn-primary" type="submit" [disabled]="!select1Form.valid" (click)="submit1()">search</button>
+            </div>
+        </div>
+        <div *ngIf="con2">
+            <div>
+                <label>Enter the Aadhar Id</label><br>
+                <label>From : </label>
+                <input type="tel" class="form-control" #id1 name="Id1" pattern="^\d{12}$" [class.is-invalid]="id1.invalid && id1.pattern" [(ngModel)]="a" value='' required>
+                <label>To : </label>
+                <input type="tel" class="form-control" #id2 name="Id2" pattern="^\d{12}$" [class.is-invalid]="id2.invalid && id2.pattern" [(ngModel)]="b" value='' required>
+                <button class="btn btn-primary" type="submit"[disabled]="!select1Form.valid" (click)="submit2()">search</button>
+            </div>
+        </div>
+        <div *ngIf="con3">
+            <div>
+                <label>Enter the date Of Birth</label>
+                <input type="date" class="form-control" #dob name="dob" [class.is-invalid]="dob.invalid" [(ngModel)]="a" value='' required>
+                <button class="btn btn-primary" type="submit"[disabled]="!select1Form.valid" (click)="submit3()">search</button>
+            </div>
+        </div>
+        <div *ngIf="con4">
+            <div>
+                <label>Enter the Age</label>
+                <input type="number" class="form-control" #age name="age" [class.is-invalid]="age.invalid " [(ngModel)]="a" value='' required>
+                <button class="btn btn-primary" type="submit" [disabled]="!select1Form.valid" (click)="submit4()">search</button>
+            </div>
+        </div>
+        <div *ngIf="con5">
+            <div>
+                <label>Enter the Gender: male/female</label>
+                <div class="form-check" required>
+                    <input type="radio" class="form-check-input" #gender name="gender" [class.is-invalid]="gender.invalid " [(ngModel)]="a" value="male" required>
+                    <label class="form-check-label">male</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" #gender name="gender" [(ngModel)]="a" [class.is-invalid]="gender.invalid " value="female" required >
+                    <label class="form-check-label">female</label>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]="!select1Form.valid" (click)="submit5()">search</button>
+            </div>
+        </div>
+        <div *ngIf="con6">
+            <div>
+                <label>Enter the State name</label>
+                <input type="text"class="form-control" #state name="state" [class.is-invalid]="state.invalid " [(ngModel)]="a" value='' required>
+                <button class="btn btn-primary" type="submit"[disabled]="!select1Form.valid" (click)="submit6()">search</button>
+            </div>
+        </div>
+        <div *ngIf= "nm">
+            no. of Holders : {{count}}
+            <br>
+            <div *ngFor="let klu of list2; let i= index">
+                {{i + 1}}
+                <label>Name : </label>
+                {{klu.name}}
+                <br>
+                <label>Aadhar Id : </label>
+                {{klu.id}}
+                <br>
+                <label>Date of Birth : </label>
+                {{klu.dob}}
+                <br>
+                <label>age : </label>
+                {{klu.age}}
+                <br>
+                <label>Gender : </label>
+                {{klu.gender}}
+                <br>
+                <label>State : </label>
+                {{klu.state}}
+            </div>
+        </div>
+        <div *ngIf="!nm">
+            {{invalid}}
+        </div>
+
+    </form>
+</div>    

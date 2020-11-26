@@ -1,0 +1,23 @@
+<div class="container">
+    <form #citizenForm="ngForm">
+        <div class="form-group" >
+            <label>Enter The Aadhar Id </label><br>
+            <input type="tel" class="form-control" #id pattern="^\d{12}$" [class.is-invalid]="id.invalid && id.untouched && id.pattern" [(ngModel)]="abc" name="aadharid" required>
+            <button [disabled]="!citizenForm.valid" (click)="submit()">Search</button>
+        </div>
+    </form>
+    <div *ngIf="nm">
+        <label>name : </label>
+        {{a}}<br>
+        <label>Aadhar Id : </label>
+        {{b}}<br>
+        <label>Date Of Birth : </label>
+        {{c}}<br>
+        <label>Age : </label>
+        {{d}}<br>
+        <label>Gender : </label>
+        {{e}}<br>
+        <label>state : </label>
+        {{f}}<br>
+    </div>
+</div>    
